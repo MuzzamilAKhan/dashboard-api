@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Api\Admin\ReportController;
+use App\Http\Controllers\Api\Admin\SettingController;
+use App\Http\Controllers\Api\Admin\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,13 @@ Route::get('user', function (Request $request) {
 });
 Route::get('ping', function () {
     return response()->json(['message' => 'API working fine!']);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('users', [UserController::class, 'index']);
+    Route::post('users', [UserController::class, 'store']);
+    Route::put('users/{id}', [UserController::class, 'update']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
 });
 Route::get('/reports', [ReportController::class, 'index']);
 Route::post('/reports', [ReportController::class, 'store']);

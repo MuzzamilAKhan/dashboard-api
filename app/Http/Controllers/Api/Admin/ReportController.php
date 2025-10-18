@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Admin;
 
-use App\Models\Report;
+use App\Http\Controllers\Controller;
+use App\Models\Reports\Reports;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -12,7 +13,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return response()->json(Report::latest()->get());
+        return response()->json(Reports::latest()->get());
     }
 
     /**
@@ -28,7 +29,7 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        $report = Report::create($request->only(['title', 'description', 'status']));
+        $report = Reports::create($request->only(['title', 'description', 'status']));
         return response()->json(['message' => 'Report created', 'data' => $report], 201);
     }
 
@@ -37,13 +38,13 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Report::findOrFail($id));
+        return response()->json(Reports::findOrFail($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Report $report)
+    public function edit(Reports $report)
     {
         //
     }
@@ -53,7 +54,7 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $report = Report::findOrFail($id);
+        $report = Reports::findOrFail($id);
         $report->update($request->only(['title', 'description', 'status']));
         return response()->json(['message' => 'Report updated', 'data' => $report]);
     }
@@ -63,7 +64,7 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-        Report::destroy($id);
+        Reports::destroy($id);
         return response()->json(['message' => 'Report deleted']);
     }
 }

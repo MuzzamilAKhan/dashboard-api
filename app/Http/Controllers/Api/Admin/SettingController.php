@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\Settings\Settings;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -34,7 +36,7 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Setting $setting)
+    public function show(Settings $setting)
     {
         //
     }
@@ -42,7 +44,7 @@ class SettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Setting $setting)
+    public function edit(Settings $setting)
     {
         //
     }
@@ -50,7 +52,7 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, Settings $setting)
     {
         //
     }
@@ -58,7 +60,7 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Setting $setting)
+    public function destroy(Settings $setting)
     {
         //
     }

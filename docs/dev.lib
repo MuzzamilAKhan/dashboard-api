@@ -3,4 +3,4 @@ generate models using tables:
    - composer require "laracademy/generators" --dev
  2. now run the following command to generate models from tables:
    - php artisan generate:modelfromtable --schema='YOUR_SCHEMA_NAME' --table='YOUR_TABLE_NAME' --folder=app/Models
-   - php artisan generate:modelfromtable --schema='dashboard_api' --table='reports' --folder=App/Models/Reports
+   - php artisan generate:modelfromtable --schema='dashboard_api' --table='roles' --folder=App/Models/Roles
