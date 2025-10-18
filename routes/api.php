@@ -10,18 +10,27 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-    Route::middleware(['auth:sanctum'])->group(function () {
-        Route::post('logout', [AuthController::class, 'logout']);
-        Route::get('profile', [AuthController::class, 'profile']);
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/profile', [AuthController::class, 'profile']);
+        Route::put('/profile', [AuthController::class, 'updateProfile']);
+        Route::post('/logout', [AuthController::class, 'logout']);
     });
 });
 
-Route::get('user', function (Request $request) {
-    $users = User::all();
-    Log::info($users);
-    response()->json(['data' => $users]);
+Route::prefix('admin')->middleware(['auth:sanctum'])->group(function () {
+    Route::get('/users', [UserController::class, 'index']);          // List all users
+    Route::post('/users', [UserController::class, 'store']);          // Create new user
+    Route::get('/users/{id}', [UserController::class, 'show']);       // View user details
+    Route::put('/users/{id}', [UserController::class, 'update']);     // Update user
+    Route::delete('/users/{id}', [UserController::class, 'destroy']); // Delete user
 });
+
+
 Route::get('ping', function () {
     return response()->json(['message' => 'API working fine!']);
 });

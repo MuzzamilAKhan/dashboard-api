@@ -42,6 +42,7 @@ class Kernel extends HttpKernel
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             // Optional: API rate limiting
             'throttle:api',
+            'auth:sanctum',
             // Enables route model binding
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
