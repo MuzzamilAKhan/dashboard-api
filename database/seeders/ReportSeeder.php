@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Report;
+use App\Models\Reports\Reports;
 
 class ReportSeeder extends Seeder
 {
@@ -43,6 +43,6 @@ class ReportSeeder extends Seeder
             ],
         ];
 
-        Report::insert($reports);
+        Reports::insert($reports);
     }
 }
